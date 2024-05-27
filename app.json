@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "AwesomeProject",
-    "slug": "AwesomeProject",
+    "slug": "tra",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -15,16 +15,32 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.dhjahd.tra",
+      "config": {
+        "googleMapsApiKey": "AIzaSyCPt_VF7L3pUUZgOSVwWa5Z05Dac7txc9s"
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
+      },
+      "package": "com.dhjahd.tra",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyALApU2THtxUgBEThYBNnZps8rhvVucx9o"
+        }
       }
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "868e5ca5-9179-4ec8-91ab-6348722eacb3"
+      }
+    },
+    "owner": "dhjahd"
   }
 }
