@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { StyleSheet, Text, TextInput, View, Image, ImageBackground, TouchableOpacity, useWindowDimensions } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { responsiveScreenHeight, responsiveScreenWidth, responsiveScreenFontSize } from 'react-native-responsive-dimensions'
-import {weather_API_Key} from "@env"
+import SearchIconSvg from './assets/images/search-icon.svg'
 
 const FIGMA_WINDOW_WIDTH = 393;
 const FIGMA_WINDOW_HEIGHT = 852;
@@ -28,33 +28,12 @@ export function fontPercentage(size) {
 export default function Main({navigation}) {
     const [search, setSearch] = useState('');
     const { height, width } = useWindowDimensions();
-    const [temp, setTemp] = useState('');
-    const [weather, setWeather] = useState('');
-    const getWeather = async() => {
-      const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=36.372141&lon=127.360651&appid=${weather_API_Key}`);
-      const data = await response.json();
-      setTemp(Math.round(data.main.temp)/10);
-      setWeather(data.weather[0].icon);
-    }
-
-    getWeather();
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.searchbox}>
-        <Image style = {styles.logo} source={require('./assets/images/search-icon.png')}></Image>
+      <SearchIconSvg width={20} height={20}/>
         <TextInput style = {styles.input} onChangeText={text => setSearch(text)} value={search} placeholder='Search'></TextInput>
-      </View>
-      <View style={styles.weatherContainer}>
-        <View style={{alignItems:'flex-start', justifyContent:'center', flex:1}}>
-          <Text style={styles.temperature}>{temp}°</Text>
-          <Text style={styles.date}>Apr 30, 2024</Text>
-          <View style={styles.regionContainer}>
-            <Image source={require('./assets/images/region.png')}/>
-            <Text style={styles.region}>Kaist, Daejeon</Text>
-          </View>
-        </View>
-        <Image style={{marginTop:5, marginRight:10, width:widthPercentage(60), height:widthPercentage(60)}} source={{uri: `http://openweathermap.org/img/w/${weather}.png`}}/>
       </View>
       <Text style={styles.text}>Category</Text>
       <View style={styles.categories}>

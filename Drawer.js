@@ -4,7 +4,9 @@ import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerI
 import Appnavigator from './Navigation';
 import { Text, View, Image, StyleSheet } from 'react-native';
 import Report from './Report';
-import { fontPercentage } from './Main';
+import { fontPercentage, heightPercentage, widthPercentage } from './Main';
+import SettingSvg from './assets/images/settings.svg';
+import LogoutSvg from './assets/images/logout.svg'
 
 const Drawer = createDrawerNavigator();
 
@@ -20,10 +22,9 @@ function CustomDrawerContent(props) {
       </DrawerContentScrollView>
       <DrawerItem
             label="Logout"
-            icon={() => <Image source={require('./assets/images/logout.png')}/>}
-            activeTintColor='#AA0000'
-            inactiveTintColor='#AA0000'
+            icon={() => <LogoutSvg width={heightPercentage(20)} height={heightPercentage(20)} />}
             style={styles.logoutButton}
+            labelStyle = {{fontSize:fontPercentage(10), color:"#AA0000"}}
           />
       </View>
     );
@@ -33,21 +34,21 @@ export default function MyDrawer() {
   return (
     <Drawer.Navigator drawerContent={(props) => <CustomDrawerContent {...props} />} screenOptions={({route}) => ({
         drawerIcon: ({ focused, size }) => {
-            let iconSource;
+            let IconComponent;
 
             if(route.name === 'Contributions') {
-                iconSource = require('./assets/images/contributions.png');
+              return <Image source={require('./assets/images/contributions.png')} />;
             } else if(route.name === 'Saved') {
-                iconSource = require('./assets/images/saved.png');
+              return <Image source={require('./assets/images/saved.png')} />;
             } else if(route.name === 'Settings') {
-                iconSource = require('./assets/images/settings.png');
+              IconComponent = SettingSvg;
             } else if(route.name === 'Report') {
-                iconSource = require('./assets/images/report.png');
+              return <Image source={require('./assets/images/report.png')} />;
             } else {
-                iconSource = require('./assets/images/faq.png');
+              return <Image source={require('./assets/images/faq.png')} />;
             }
 
-            return <Image source={iconSource} />;
+            return <IconComponent width={20} height={20} />;
         },
     })}>
       <Drawer.Screen name="Home" component={Appnavigator} options={{headerShown : false}}/>
@@ -79,6 +80,6 @@ const styles = StyleSheet.create({
   },
   logoutButton : {
     marginLeft:10,
-    marginBottom:20
+    marginBottom:20,
   },
 });
