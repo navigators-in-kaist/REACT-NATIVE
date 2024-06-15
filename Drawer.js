@@ -1,16 +1,18 @@
 import React from 'react';
-import Profile from './Profile';
-import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem  } from '@react-navigation/drawer';
-import Appnavigator from './Navigation';
 import { Text, View, Image, StyleSheet } from 'react-native';
-import Report from './Report';
+import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem  } from '@react-navigation/drawer';
+import { useNavigation } from '@react-navigation/native';
 import { fontPercentage, heightPercentage, widthPercentage } from './Main';
+import Appnavigator from './Navigation';
+import Report from './Report';
+import MyContribution from './MyContribution';
 import SettingSvg from './assets/images/settings.svg';
 import LogoutSvg from './assets/images/logout.svg'
 
 const Drawer = createDrawerNavigator();
 
 function CustomDrawerContent(props) {
+  const navigation = useNavigation();
     return (
       <View style={styles.container}>
       <DrawerContentScrollView {...props}>
@@ -25,6 +27,7 @@ function CustomDrawerContent(props) {
             icon={() => <LogoutSvg width={heightPercentage(20)} height={heightPercentage(20)} />}
             style={styles.logoutButton}
             labelStyle = {{fontSize:fontPercentage(10), color:"#AA0000"}}
+            onPress={() => navigation.navigate('Login')}
           />
       </View>
     );
@@ -52,11 +55,11 @@ export default function MyDrawer() {
         },
     })}>
       <Drawer.Screen name="Home" component={Appnavigator} options={{headerShown : false}}/>
-      <Drawer.Screen name="Contributions" component={Profile} options={{headerShown : false}}/>
-      <Drawer.Screen name="Saved" component={Profile} options={{headerShown : false}}/>
-      <Drawer.Screen name="Settings" component={Profile} options={{headerShown : false}}/>
+      <Drawer.Screen name="Contributions" component={MyContribution} options={{headerShown : false}}/>
+      <Drawer.Screen name="Saved" component={Report} options={{headerShown : false}}/>
+      <Drawer.Screen name="Settings" component={Report} options={{headerShown : false}}/>
       <Drawer.Screen name="Report" component={Report} options={{headerShown : false}}/>
-      <Drawer.Screen name="FAQ" component={Profile} options={{headerShown : false}}/>
+      <Drawer.Screen name="FAQ" component={Report} options={{headerShown : false}}/>
     </Drawer.Navigator>
   );
 }

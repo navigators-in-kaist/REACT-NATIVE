@@ -1,0 +1,26 @@
+<svg width="86" height="86" viewBox="0 0 86 86" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Location">
+<g id="Range">
+<rect id="Rectangle" opacity="0.1" x="24" y="14" width="38" height="38" rx="19" fill="#4EADFE"/>
+<rect id="Rectangle_2" opacity="0.05" x="17" y="7" width="52" height="52" rx="26" fill="#4EADFE"/>
+</g>
+<g id="Your Location">
+<g id="Rectangle_3" filter="url(#filter0_d_1_684)">
+<rect x="30.2942" y="20.2942" width="25" height="25" rx="12.5" fill="white"/>
+<rect x="30.2942" y="20.2942" width="25" height="25" rx="12.5" stroke="#979797"/>
+</g>
+<rect id="Rectangle 2" x="39.7942" y="29.7941" width="6" height="6" rx="3" fill="#00F2FE"/>
+</g>
+</g>
+<defs>
+<filter id="filter0_d_1_684" x="0.294189" y="0.294189" width="85" height="85" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="10"/>
+<feGaussianBlur stdDeviation="15"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.313726 0 0 0 0 0.376471 0 0 0 0 0.407843 0 0 0 0.4 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_684"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_684" result="shape"/>
+</filter>
+</defs>
+</svg>

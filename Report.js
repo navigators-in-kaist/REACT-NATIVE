@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 export default function Report() {
   return (
     <View style={styles.container}>
-      <Text>Report</Text>
+      <Text>.</Text>
     </View>
   );
 }

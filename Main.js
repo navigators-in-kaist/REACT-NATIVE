@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { StyleSheet, Text, TextInput, View, Image, ImageBackground, TouchableOpacity, useWindowDimensions } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { responsiveScreenHeight, responsiveScreenWidth, responsiveScreenFontSize } from 'react-native-responsive-dimensions'
-import SearchIconSvg from './assets/images/search-icon.svg'
+import { responsiveScreenHeight, responsiveScreenWidth, responsiveScreenFontSize } from 'react-native-responsive-dimensions';
+import { useToken } from './Token'
+import SearchIconSvg from './assets/images/search-icon.svg';
 
 const FIGMA_WINDOW_WIDTH = 393;
 const FIGMA_WINDOW_HEIGHT = 852;
@@ -28,6 +29,8 @@ export function fontPercentage(size) {
 export default function Main({navigation}) {
     const [search, setSearch] = useState('');
     const { height, width } = useWindowDimensions();
+    const accessToken = useToken();
+    const [categoryData, setCategoryData] = useState([]);
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -35,53 +38,51 @@ export default function Main({navigation}) {
       <SearchIconSvg width={20} height={20}/>
         <TextInput style = {styles.input} onChangeText={text => setSearch(text)} value={search} placeholder='Search'></TextInput>
       </View>
-      <Text style={styles.text}>Category</Text>
-      <View style={styles.categories}>
-        <TouchableOpacity onPress={() => navigation.navigate('Restaurant')}>
-        <View style={styles.category}>
-          <ImageBackground source={require('./assets/images/restaurant.png')} resizeMode="cover" style={styles.category_image}>
-            <Text style={styles.place}>Restaurants</Text>
-            <Text style={styles.location_num}>8 Locations</Text>
-          </ImageBackground>
+        <Text style={styles.text}>Category</Text>
+        <View style={styles.categories}>
+          <TouchableOpacity onPress={() => navigation.navigate('Category_Location', {id:'2f5d8135-cefc-4d68-bde5-2ae78a9ba65c', name:'Restaurants'})}>
+          <View style={styles.category}>
+            <ImageBackground source={require('./assets/images/restaurant.png')} resizeMode="cover" style={styles.category_image}>
+              <Text style={styles.place}>Restaurants</Text>
+            </ImageBackground>
+          </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('Category_Location', {id:'bffe8471-31b0-4695-9907-7bf77f0069f8', name:'Convenience Stores'})}>
+          <View style={styles.category}>
+            <ImageBackground source={require('./assets/images/convenience-store.png')} rtesizeMode="cover" style={styles.category_image}>
+              <Text style={styles.place}>Convenience Stores</Text>
+            </ImageBackground>
+          </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('Category_Location', {id:'a8a67e35-b956-4f4b-a00d-215ed958834a', name:'Cafes'})}>
+          <View style={styles.category}>
+            <ImageBackground source={require('./assets/images/cafe.png')} resizeMode="cover" style={styles.category_image}>
+            <Text style={styles.place}>Cafes</Text>
+            </ImageBackground>
+          </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('Category_Location', {id:'b06781df-1703-4fd1-81c7-3ae8ffe97016', name:'Gyms'})}>
+          <View style={styles.category}>
+            <ImageBackground source={require('./assets/images/gym.png')} resizeMode="cover" style={styles.category_image}>
+              <Text style={styles.place}>Gyms</Text>
+            </ImageBackground>
+          </View>
+          </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Category_Location', {id:'8916ab2a-224d-41d9-89be-84b1af520fef', name:'Dormitories'})}>
+          <View style={styles.category}>
+            <ImageBackground source={require('./assets/images/dormitory.png')} resizeMode="cover" style={styles.category_image}>
+              <Text style={styles.place}>Dormitories</Text>
+            </ImageBackground>
+          </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('Category_Location', {id:'0969b176-d2f7-4e18-93d1-1f977222c965', name:'Coworking Spaces'})}>
+          <View style={styles.category}>
+            <ImageBackground source={require('./assets/images/coworking-space.png')} resizeMode="cover" style={styles.category_image}>
+              <Text style={styles.place}>Coworking Spaces</Text>
+            </ImageBackground>
+          </View>
+          </TouchableOpacity>
         </View>
-        </TouchableOpacity>
-        <View style={styles.category}>
-          <ImageBackground source={require('./assets/images/convenience-store.png')} rtesizeMode="cover" style={styles.category_image}>
-            <Text style={styles.place}>Convenience Stores</Text>
-            <Text style={styles.location_num}>9 Locations</Text>
-          </ImageBackground>
-        </View>
-      </View>
-      <View style={styles.categories}>
-        <TouchableOpacity onPress={() => navigation.navigate('Cafe')}>
-        <View style={styles.category}>
-          <ImageBackground source={require('./assets/images/cafe.png')} resizeMode="cover" style={styles.category_image}>
-          <Text style={styles.place}>Cafes</Text>
-          <Text style={styles.location_num}>9 Locations</Text>
-          </ImageBackground>
-        </View>
-        </TouchableOpacity>
-        <View style={styles.category}>
-          <ImageBackground source={require('./assets/images/gym.png')} resizeMode="cover" style={styles.category_image}>
-            <Text style={styles.place}>Gyms</Text>
-            <Text style={styles.location_num}>8 Locations</Text>
-          </ImageBackground>
-        </View>
-      </View>
-      <View style={styles.categories}>
-        <View style={styles.category}>
-          <ImageBackground source={require('./assets/images/dormitory.png')} resizeMode="cover" style={styles.category_image}>
-            <Text style={styles.place}>Dormitories</Text>
-            <Text style={styles.location_num}>9 Locations</Text>
-          </ImageBackground>
-        </View>
-        <View style={styles.category}>
-          <ImageBackground source={require('./assets/images/coworking-space.png')} resizeMode="cover" style={styles.category_image}>
-            <Text style={styles.place}>Coworking Spaces</Text>
-            <Text style={styles.location_num}>9 Locations</Text>
-          </ImageBackground>
-        </View>
-      </View>
     </ScrollView>
   );
 }
@@ -102,53 +103,30 @@ const styles = StyleSheet.create({
     borderColor: "#808080",
     borderWidth: 1,
     borderRadius: 10,
-    marginTop:50,
+    marginTop:heightPercentage(50),
   },
   logo: {
-    width: 20,
-    height: 20
+    width: heightPercentage(20),
+    height: heightPercentage(20)
   },
   input: {
     width: '100%',
-    height: 41,
-    padding: 10
-  },
-  weatherContainer: {
-    flexDirection: 'row',
-    marginTop:10,
-    width:widthPercentage(320),
-    height:heightPercentage(98),
-    borderRadius:10,
-    borderWidth:1,
-    borderColor:'#808080',
-    justifyContent:'center',
-  },
-  temperature: {
-    fontSize: fontPercentage(22),
-    marginLeft: 20
-  },
-  date: {
-    fontSize: fontPercentage(12),
-    marginLeft: 20
-  },
-  regionContainer: {
-    flexDirection: 'row',
-    alignItems:'center',
-    marginLeft: 20,
-    marginTop:10
-  },
-  region: {
-    fontSize: fontPercentage(10),
-    marginLeft:5
+    height: heightPercentage(41),
+    padding: 10,
   },
   categories: {
     flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center'
   },
   text: {
-    fontSize:fontPercentage(22),
+    fontSize: fontPercentage(22),
+    marginTop: heightPercentage(20),
+    marginBottom: heightPercentage(10),
+    fontWeight: 'bold'
   },
   category: {
-    margin: 10,
+    margin: heightPercentage(10),
     width: heightPercentage(150),
     height: heightPercentage(150),
   },
